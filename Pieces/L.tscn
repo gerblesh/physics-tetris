@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://liglphqd6meu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l4ig4"]
-bounce = 0.1
-absorbent = true
+friction = 0.05
+bounce = 0.39
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1xygi"]
 size = Vector3(2, 2, 4)
@@ -42,7 +42,7 @@ shadow_mesh = SubResource( "ArrayMesh_mbmd4" )
 
 [node name="L" type="RigidDynamicBody3D"]
 collision_mask = 3
-mass = 0.5
+mass = 0.23
 physics_material_override = SubResource( "PhysicsMaterial_l4ig4" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

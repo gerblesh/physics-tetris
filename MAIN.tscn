@@ -3,13 +3,6 @@
 [ext_resource type="Script" path="res://blocks.gd" id="2_7cxfx"]
 [ext_resource type="Script" path="res://Models/trigger/trigger_manager.gd" id="6_gro3x"]
 
-[sub_resource type="Environment" id="Environment_mv7jf"]
-background_mode = 2
-ambient_light_source = 2
-ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
-tonemap_mode = 2
-glow_enabled = true
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dseq0"]
 size = Vector3(4, 1, 42)
 
@@ -26,7 +19,41 @@ margin = 0.05
 data = PackedVector3Array(1.15, 40, 20.1, -1.15, 40, 20.1, -1.15, -40, 20.1, 1.15, -40, 20.1, 1.15, 40, 20.1, -1.15, -40, 20.1, -1.15, 40, -20.1, 1.15, 40, -20.1, 1.15, -40, -20.1, -1.15, -40, -20.1, -1.15, 40, -20.1, 1.15, -40, -20.1, 1.15, 40, -20.1, 1.15, 40, 20.1, 1.15, -40, 20.1, 1.15, -40, -20.1, 1.15, 40, -20.1, 1.15, -40, 20.1, -1.15, 40, 20.1, -1.15, 40, -20.1, -1.15, -40, -20.1, -1.15, -40, 20.1, -1.15, 40, 20.1, -1.15, -40, -20.1, -1.15, 40, 20.1, 1.15, 40, 20.1, 1.15, 40, -20.1, -1.15, 40, -20.1, -1.15, 40, 20.1, 1.15, 40, -20.1, 1.15, -40, 20.1, -1.15, -40, 20.1, -1.15, -40, -20.1, 1.15, -40, -20.1, 1.15, -40, 20.1, -1.15, -40, -20.1)
 backface_collision = true
 
+[sub_resource type="Environment" id="Environment_mv7jf"]
+background_mode = 2
+ambient_light_source = 2
+ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="MAIN" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="trigger_manager" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.3997, 6.55671e-07)
+script = ExtResource( "6_gro3x" )
+
+[node name="trigger" type="Area3D" parent="Node3D/trigger_manager"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/trigger_manager/trigger"]
+shape = SubResource( "BoxShape3D_dseq0" )
+
+[node name="blocks" type="Node3D" parent="Node3D"]
+transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 0, 72.7373, 6.55671e-07)
+script = ExtResource( "2_7cxfx" )
+
+[node name="box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36, 0)
+mesh = SubResource( "BoxMesh_owiwe" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_uxlqc" )
+
+[node name="StaticBody3D" type="StaticBody3D" parent="box"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="@@33914" type="CollisionShape3D" parent="box/StaticBody3D"]
+shape = SubResource( "ConcavePolygonShape3D_fuwlr" )
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -42,32 +69,8 @@ wait_time = 0.2
 autostart = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 14.4, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 37.2755, 35.5798, -15.583)
 fov = 100.0
+far = 4000.46
 
-[node name="trigger_manager" type="Node3D" parent="Camera3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 12, -15)
-script = ExtResource( "6_gro3x" )
-
-[node name="trigger" type="Area3D" parent="Camera3D/trigger_manager"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/trigger_manager/trigger"]
-shape = SubResource( "BoxShape3D_dseq0" )
-
-[node name="blocks" type="Node3D" parent="Camera3D"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 10, -15)
-script = ExtResource( "2_7cxfx" )
-
-[node name="box" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36, 0)
-mesh = SubResource( "BoxMesh_owiwe" )
-surface_material_override/0 = SubResource( "StandardMaterial3D_uxlqc" )
-
-[node name="StaticBody3D" type="StaticBody3D" parent="box"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="@@33914" type="CollisionShape3D" parent="box/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_fuwlr" )
-
-[connection signal="timeout" from="Timer" to="Camera3D/trigger_manager" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Node3D/trigger_manager" method="_on_timer_timeout"]

@@ -11,16 +11,9 @@ config_version=5
 [application]
 
 config/name="shit_tetris"
+run/main_scene="res://MAIN.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
-
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/fullscreen=true
-window/stretch/mode="viewport"
-window/stretch/shrink=2.0
 
 [input]
 
@@ -54,4 +47,8 @@ release={
 
 common/physics_ticks_per_second=240
 3d/physics_engine="GodotPhysics3D"
-3d/default_gravity=14.0
+3d/default_gravity=35.0
+
+[rendering]
+
+anti_aliasing/quality/msaa=1
