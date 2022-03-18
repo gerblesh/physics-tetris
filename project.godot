@@ -15,10 +15,6 @@ run/main_scene="res://MAIN.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
-[display]
-
-window/stretch/mode="viewport"
-
 [input]
 
 left={
@@ -52,3 +48,7 @@ release={
 common/physics_ticks_per_second=240
 3d/physics_engine="GodotPhysics3D"
 3d/default_gravity=35.0
+
+[rendering]
+
+anti_aliasing/quality/msaa=1

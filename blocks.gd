@@ -24,17 +24,20 @@ func _next():
 	current_piece.position = position
 	current_piece.mass = 0.2
 	current_piece.contact_monitor = true
+	current_piece.set_max_contacts_reported(1)
 	await get_tree().process_frame
 	get_parent().add_child(current_piece)
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("release") or current_piece.get_colliding_bodies().size() > 0:
+		return await release_piece()
+
 	var linear_axis = Input.get_action_strength("left") - Input.get_action_strength("right")
 	var rotation_axis = Input.get_action_strength("rotate_right") - Input.get_action_strength("rotate_left")
 	current_piece.linear_velocity.y = -7
 	current_piece.linear_velocity.z = linear_axis * move_speed
 	current_piece.angular_velocity.x = rotation_axis * -10
-	if Input.is_action_just_pressed("release") or current_piece.get_colliding_bodies().size() > 0:
-		release_piece()
+
 
 func release_piece():
 	set_physics_process(false)
