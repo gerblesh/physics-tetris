@@ -42,6 +42,6 @@ func _physics_process(delta):
 func release_piece():
 	set_physics_process(false)
 	current_piece = null
-	await get_tree().create_timer(0.3,false).timeout
+	await get_tree().create_timer(0.7,false).timeout
 	_next()
 	set_physics_process(true)
