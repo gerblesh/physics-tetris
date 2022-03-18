@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brwi2intnbh1k"]
+[gd_scene load_steps=12 format=3 uid="uid://brwi2intnbh1k"]
 
 [ext_resource type="Script" path="res://blocks.gd" id="2_7cxfx"]
 [ext_resource type="AudioStream" uid="uid://dlrtkx3aurod6" path="res://Sounds/Verbalase Low Tetris Beatbox (FULL VIDEO) - Bruh Momento-jElSLP9-iJM.mp3" id="3_oc5c2"]
@@ -12,7 +12,11 @@ flip_faces = true
 size = Vector3(2.3, 80, 40.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxlqc"]
-albedo_color = Color(0.376471, 0.376471, 0.376471, 1)
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mg13p"]
+rough = true
+absorbent = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fuwlr"]
 custom_solver_bias = 1.0
@@ -21,11 +25,73 @@ data = PackedVector3Array(1.15, 40, 20.1, -1.15, 40, 20.1, -1.15, -40, 20.1, 1.1
 backface_collision = true
 
 [sub_resource type="Environment" id="Environment_mv7jf"]
-background_mode = 2
+background_mode = 1
 ambient_light_source = 2
-ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
+ambient_light_color = Color(0.486275, 0.486275, 0.486275, 1)
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0.286275, 1, 1)
+fog_density = 0.0
+fog_height = 9.35
+fog_height_density = 0.0211
+
+[sub_resource type="Animation" id="Animation_7uxp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:fog_height_density")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0211]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+
+[sub_resource type="Animation" id="Animation_frllc"]
+resource_name = "t"
+length = 0.375
+loop_mode = 1
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:fog_height_density")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.37),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0211, 0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.375),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [100.0, 99.5]
+}
 
 [node name="MAIN" type="Node3D"]
 
@@ -41,7 +107,7 @@ script = ExtResource( "6_gro3x" )
 shape = SubResource( "BoxShape3D_dseq0" )
 
 [node name="blocks" type="Node3D" parent="Node3D"]
-transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 0, 72.7373, 6.55671e-07)
+transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 0, 64.7373, 6.55671e-07)
 script = ExtResource( "2_7cxfx" )
 
 [node name="box" type="MeshInstance3D" parent="."]
@@ -52,6 +118,7 @@ surface_material_override/0 = SubResource( "StandardMaterial3D_uxlqc" )
 [node name="StaticBody3D" type="StaticBody3D" parent="box"]
 collision_layer = 2
 collision_mask = 0
+physics_material_override = SubResource( "PhysicsMaterial_mg13p" )
 
 [node name="@@33914" type="CollisionShape3D" parent="box/StaticBody3D"]
 shape = SubResource( "ConcavePolygonShape3D_fuwlr" )
@@ -76,8 +143,12 @@ far = 4000.46
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( "3_oc5c2" )
+volume_db = -10.0
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "t"
+anims/RESET = SubResource( "Animation_7uxp4" )
+anims/t = SubResource( "Animation_frllc" )
 
 [connection signal="timeout" from="Timer" to="Node3D/trigger_manager" method="_on_timer_timeout"]

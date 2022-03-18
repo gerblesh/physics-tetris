@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlwyxlqflynxs"]
+[gd_scene load_steps=8 format=3 uid="uid://dlwyxlqflynxs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l4ig4"]
 bounce = 0.1
@@ -40,6 +40,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource( "ArrayMesh_2jlac" )
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rra86"]
+resource_local_to_scene = true
+
 [node name="wither" type="RigidDynamicBody3D"]
 collision_mask = 3
 mass = 0.5
@@ -53,7 +56,8 @@ shape = SubResource( "BoxShape3D_n6c43" )
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -2)
 shape = SubResource( "BoxShape3D_hnxr3" )
 
-[node name="Wither" type="MeshInstance3D" parent="."]
+[node name="mesh" type="MeshInstance3D" parent="."]
 gi_mode = 1
 mesh = SubResource( "ArrayMesh_rktay" )
 skeleton = NodePath("")
+surface_material_override/0 = SubResource( "StandardMaterial3D_rra86" )
