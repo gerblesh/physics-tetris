@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://biumly60h4w4d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7aakh"]
+size = Vector3(2, 2, 4)
+
+[node name="trigger1" type="Area3D"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "BoxShape3D_7aakh" )
