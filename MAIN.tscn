@@ -30,6 +30,11 @@ ambient_light_source = 2
 ambient_light_color = Color(0.486275, 0.486275, 0.486275, 1)
 tonemap_mode = 2
 glow_enabled = true
+glow_intensity = 3.39
+glow_strength = 1.48
+glow_bloom = 0.03
+glow_blend_mode = 0
+glow_map_strength = 0.99
 fog_enabled = true
 fog_light_color = Color(0, 0.286275, 1, 1)
 fog_density = 0.0
@@ -124,7 +129,8 @@ physics_material_override = SubResource( "PhysicsMaterial_mg13p" )
 shape = SubResource( "ConcavePolygonShape3D_fuwlr" )
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.250001, -0.460905, 0.885179, -0.0634448, -0.193823, -0.170171, -0.966165, 0, 47.313, -37.5967)
+light_energy = 2.2
 shadow_enabled = true
 directional_shadow_max_distance = 250.0
 

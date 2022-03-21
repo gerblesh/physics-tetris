@@ -43,7 +43,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource( "ArrayMesh_mphh4" )
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rra86"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jtll"]
 resource_local_to_scene = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tr5jw"]
@@ -58,7 +58,7 @@ physics_material_override = SubResource( "PhysicsMaterial_l4ig4" )
 gi_mode = 1
 mesh = SubResource( "ArrayMesh_86afs" )
 skeleton = NodePath("")
-surface_material_override/0 = SubResource( "StandardMaterial3D_rra86" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_1jtll" )
 
 [node name="34002" type="CollisionShape3D" parent="."]
 shape = SubResource( "ConvexPolygonShape3D_tr5jw" )

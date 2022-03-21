@@ -37,7 +37,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource( "ArrayMesh_4by8t" )
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rra86"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jtll"]
 resource_local_to_scene = true
 
 [node name="S" type="RigidDynamicBody3D"]
@@ -57,4 +57,4 @@ shape = SubResource( "BoxShape3D_jrqy2" )
 gi_mode = 1
 mesh = SubResource( "ArrayMesh_7i1cf" )
 skeleton = NodePath("")
-surface_material_override/0 = SubResource( "StandardMaterial3D_rra86" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_1jtll" )
