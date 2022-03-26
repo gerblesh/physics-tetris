@@ -1,0 +1,16 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dib0emu4iblaq"
+path="res://.godot/imported/fart-with-reverb.mp3-e0c539c3f83b9a2372ac874158362280.mp3str"
+
+[deps]
+
+source_file="res://Sounds/fart-with-reverb.mp3"
+dest_files=["res://.godot/imported/fart-with-reverb.mp3-e0c539c3f83b9a2372ac874158362280.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
